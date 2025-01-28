@@ -3,9 +3,11 @@ import { fetchMovie } from "@/app/api/tmdb";
 import React from "react";
 import { IoHeartCircleOutline } from "react-icons/io5";
 
-
-
-const page = async ({ params }: { params: { movieId: string } }) => {
+export default async function MoviePage({
+  params,
+}: {
+  params: { movieId: string };
+}){
   const data = await fetchMovie(params.movieId);
   console.log(data);
   return (
@@ -49,4 +51,4 @@ const page = async ({ params }: { params: { movieId: string } }) => {
   );
 };
 
-export default page;
+
