@@ -21,7 +21,7 @@ interface PageProps {
   searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export default async function MoviePage({ params, searchParams }: PageProps){
+export default async function MoviePage({ params}: PageProps){
   const data:Movie = await fetchMovie(params.movieId);
   console.log(data);
   return (
