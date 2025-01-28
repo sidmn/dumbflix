@@ -14,14 +14,13 @@ interface Movie {
   overview: string;
 }
 
-interface PageProps {
-  params: {
-    movieId: string;
-  };
-  searchParams: { [key: string]: string | string[] | undefined };
-}
 
-export default async function MoviePage({ params}: PageProps){
+
+export default async function MoviePage({
+  params,
+}: {
+  params: Promise<{ movieId: string }>
+}){
   const data:Movie = await fetchMovie(params.movieId);
   console.log(data);
   return (
