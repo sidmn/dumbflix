@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import type { PluginAPI } from 'tailwindcss/types/config';
 
 export default {
     darkMode: ["class"],
@@ -67,7 +68,7 @@ export default {
   		}
   	}
   },
-  plugins: [function ({ addUtilities }) {
+  plugins: [function ( {addUtilities}: PluginAPI) {
 	const newUtilities = {
 	  '.text-stroke-1': {
 		'-webkit-text-stroke-width': '1px',
@@ -85,7 +86,11 @@ export default {
 		'-webkit-text-stroke-color': '#fff',
 	  },
 	}
-	  addUtilities(newUtilities, ['responsive', 'hover']);
-    },
-	  require("tailwindcss-animate")],
+	addUtilities(newUtilities, {
+		respectPrefix: true,
+		respectImportant: true,
+	  });
+	},
+	// eslint-disable-next-line @typescript-eslint/no-require-imports
+	require("tailwindcss-animate")],
 } satisfies Config;

@@ -3,26 +3,12 @@ import { fetchMovie } from "@/app/api/tmdb";
 import React from "react";
 import { IoHeartCircleOutline } from "react-icons/io5";
 
-interface Movie {
-  id: number;
-  title: string;
-  poster_path: string;
-  popularity: number;
-  release_date: string;
-  backdrop_path: string;
-  tagline: string;
-  overview: string;
-}
-
 
 
 export default async function MoviePage({
   params,
-}: {
-  params: Promise<{ movieId: string }>
 }){
-  const data:Movie = await fetchMovie(params.movieId);
-  console.log(data);
+  const data= await fetchMovie(params.movieId);
   return (
     <div>
       <div className="relative w-full h-screen flex flex-col justify-center content-center p-8 ">

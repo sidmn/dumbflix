@@ -1,15 +1,6 @@
 const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
-interface Movie {
-  id: number;
-  title: string;
-  poster_path: string;
-  popularity: number;
-  release_date: string;
-  backdrop_path: string;
-  tagline: string;
-  overview: string;
-}
+
 
 export async function fetchTrending() {
   const res = await fetch(
@@ -24,7 +15,7 @@ export async function fetchTrending() {
   return res.json();
 }
 
-export async function fetchMovie(movieId: string): Promise<Movie> {
+export async function fetchMovie(movieId) {
   const res = await fetch(
     `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`,
     { next: { revalidate: 3600 } } 
