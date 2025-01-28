@@ -11,6 +11,14 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
+interface Movie {
+  id:number;
+  title:string;
+  poster_path:string;
+  popularity:number;
+  release_date:string
+}
+
 const TrendingMovies = async () => {
   const data = await fetchTrending();
 
@@ -19,7 +27,7 @@ const TrendingMovies = async () => {
       <div className="">Trending this week</div>
       <Carousel>
         <CarouselContent className="md:p-2">
-          {data.results.slice(0,10).map((movie: any, index) => (
+          {data.results.slice(0,10).map((movie: Movie, index:number) => (
             <CarouselItem className="basis-1/4 md:basis-1/5 lg:basis-1/6" key={index}>
               <Link href={`/movie/${movie.id}`} key={movie.id}>
               <div className="relative z-0">
