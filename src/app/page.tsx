@@ -1,7 +1,7 @@
 
 
 import Image from "next/image";
-import TrendingMovies from "./components/TrendingMovies";
+
 import heroL from "./assets/hero_small.jpg";
 import logo from "./assets/dumbflix_logo.png";
 import SearchBar from "./components/SearchBar";
@@ -40,7 +40,7 @@ export default function HomePage() {
           <div className="text-white md:text-lg lg:text-xl z-1">
             Trending Now
           </div>
-          
+         
         </div>
       </div>
     </main>
