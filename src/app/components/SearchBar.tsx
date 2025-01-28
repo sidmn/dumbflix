@@ -47,7 +47,7 @@ const SearchBar = () => {
         </button>
       </div>
       <div className="flex flex-col gap-2 mt-2 absolute">
-        {searchResults.slice(0, 4).map((movie: Movie) => (
+        {(searchResults || []).slice(0, 4).map((movie: Movie) => (
           <Link href={`/movie/${movie.id}`} key={movie.id}>
             <div
               key={movie.id}
