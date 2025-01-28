@@ -5,11 +5,11 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { IoHeartCircleOutline } from "react-icons/io5";
 interface Movie {
-  id:number;
-  title:string;
-  poster_path:string;
-  popularity:number;
-  release_date:string
+  id: number;
+  title: string;
+  poster_path: string;
+  popularity: number;
+  release_date: string;
 }
 
 const SearchBar = () => {
@@ -40,6 +40,7 @@ const SearchBar = () => {
           className="px-4 py-2 rounded-sm bg-transparent border border-gray-500 border-1 text-white focus:border-gray-200"
         />
         <button
+          type="submit"
           onClick={handleSearch}
           className="px-4 py-2 bg-[#E50815] text-white rounded-sm"
         >
@@ -51,7 +52,7 @@ const SearchBar = () => {
           <Link href={`/movie/${movie.id}`} key={movie.id}>
             <div
               key={movie.id}
-              className="bg-gray-800 bg-opacity-80 text-white rounded-lg p-1 flex flex-row justify-items-center items-center gap-5 pr-5"
+              className="bg-gray-800 md:bg-opacity-80 text-white rounded-lg p-1 flex flex-row justify-items-center items-center gap-5 pr-5"
             >
               <Image
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
