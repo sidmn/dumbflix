@@ -40,7 +40,7 @@ export default function HomePage() {
           <div className="text-white md:text-lg lg:text-xl z-1">
             Trending Now
           </div>
-          <TrendingMovies />
+          
         </div>
       </div>
     </main>
