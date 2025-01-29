@@ -17,15 +17,15 @@ const page = async () => {
   const data = await fetchTrending();
 
   return (
-    <div className="pl-6 pr-6 md:pl-[80px] md:pr-[80px] xl:pl-[130px] xl:pr-[130px]">
+    <div className="pl-6 pr-3 md:pl-[80px] md:pr-[80px] xl:pl-[130px] xl:pr-[130px]">
       <div className="text-red-700 md:text-lg lg:text-xl pb-5 flex flex-row items-center gap-1 underline">
         Trending this week
         <IoIosTrendingUp />
       </div>
-      <div className="gap-4 flex flex-row flex-wrap">
+      <div className="gap-4 flex flex-row flex-wrap justify-center">
         {(data.results || []).map((movie: Movie) => (
           <Link href={`/movie/${movie.id}`} key={movie.id}>
-            <div className="relative flex flex-col rounded-lg bg-gray-800 bg-opacity-70 p-3 xl:p-4 w-40 xl:w-[230px] ">
+            <div className="relative flex flex-col rounded-lg bg-gray-800 bg-opacity-70 p-3 xl:p-4 w-[150px] md:w-40 xl:w-[230px] ">
               <Image
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
