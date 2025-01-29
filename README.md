@@ -15,7 +15,7 @@ This is a Next.js-based movie app that fetches and displays trending movies usin
 
 ##**Technical decision:**
 
-**NextJs:** For improves SEO and performance due to SSG. Its has built-in Image Optimization and lazy loading.
+**NextJs:** For improved SEO and performance. Its has built-in Image Optimization and lazy loading.
 
 **Tailwind CSS:** For rapid styling
 
