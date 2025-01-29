@@ -1,7 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
 import logo from "../assets/dumbflix_logo.png";
-import SearchBar from './SearchBar';
 import Link from 'next/link';
 
 
