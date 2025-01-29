@@ -43,6 +43,7 @@ const SearchBar = () => {
         />
         <button
           type="submit"
+          aria-label="Search"
           onClick={handleSearch}
           className="px-4 py-2 bg-[#E50815] text-white rounded-sm"
         >

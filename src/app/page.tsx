@@ -15,6 +15,7 @@ export default function HomePage() {
           className="absolute w-full brightness-[0.3] -z-1"
           alt="hero image"
           loading="lazy"
+          quality={100}
         />
 
         <div className="absolute z-1 w-full h-full bg-gradient-to-b from-transparent via-transparent to-black"></div>
@@ -32,14 +33,16 @@ export default function HomePage() {
         <div className="pl-4 pr-4 md:pl-10 md:pr-10 lg:pl-20 lg:pr-20">
           <div className="text-white md:text-lg lg:text-xl z-1 pb-2 flex flex-row justify-between ">
             Trending Now
-            <button className="bg-red-600 px-3 py-2 rounded-lg">
-              <Link
+            <Link
                 href="/trending-movies"
-                className="flex flex-row items-center gap-1"
+                className="items-center"
+                aria-label="View More trending movies"
               >
+            <button className="bg-red-600 px-3 py-2 rounded-lg" aria-label="View More">
+              
                 <p className="hidden md:block text-sm">View More</p> <IoIosArrowForward className="md:hidden" />
-              </Link>
-            </button>
+              
+            </button></Link>
           </div>
           <TrendingMovies />
         </div>
