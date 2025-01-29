@@ -26,7 +26,7 @@ const TrendingMovies = async () => {
 
   return (
     <div>
-      <div className="">Trending this week</div>
+      
       <Carousel>
         <CarouselContent className="md:p-2">
           {(data.results || []).slice(0,10).map((movie: Movie, index:number) => (
@@ -38,6 +38,7 @@ const TrendingMovies = async () => {
                   alt={movie.title}
                   width={200}
                   height={300}
+                  loading="lazy"
                   className="rounded-lg"
                 />
                 <p className="absolute z-1 text-[50px] md:text-[80px] bottom-[-10] left-[-10] text-black text-stroke-2 text-stroke-white font-bold md:left-[-12px] md:bottom[-20] lg:text-[100px]">

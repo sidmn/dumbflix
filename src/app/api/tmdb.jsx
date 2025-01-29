@@ -5,7 +5,7 @@ const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 export async function fetchTrending() {
   const res = await fetch(
     `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`,
-    { next: { revalidate: 3600 } } // Currently I have Cached it for 1 hour
+    { next: { revalidate: 86400 } } // Currently I have Cached it for 24 hour
   );
 
   if (!res.ok) {

@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { IoHeartCircleOutline } from "react-icons/io5";
+import { IoSearch } from "react-icons/io5";
+
 interface Movie {
   id: number;
   title: string;
@@ -44,7 +46,8 @@ const SearchBar = () => {
           onClick={handleSearch}
           className="px-4 py-2 bg-[#E50815] text-white rounded-sm"
         >
-          Search
+          <p className="hidden md:block">Search</p>
+          <IoSearch className="md:hidden"/>
         </button>
       </div>
       <div className="flex flex-col gap-2 mt-2 absolute">
@@ -62,7 +65,7 @@ const SearchBar = () => {
                 className="rounded-lg"
               />
 
-              <div className="flex flex-col">
+              <div className="flex flex-col w-full">
                 <h3 className="mt-2 text-md font-medium">{movie.title}</h3>
                 <div className="flex flex-row justify-between text-gray-400 ">
                   <h3 className="text-sm">{movie.release_date}</h3>

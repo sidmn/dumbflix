@@ -19,7 +19,7 @@ export default async function MoviePage({
           alt="backdrop image"
           className="-z-1 absolute brightness-[0.3] blur-md"
         />
-        <div className="relative flex flex-col md:flex-row justify-items-center items-center bg-black rounded-lg p-4 pr-10">
+        <div className="relative flex flex-col md:flex-row justify-items-center items-center bg-black rounded-lg p-4 md:pr-10 ">
           <Image
             src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
             width={400}
