@@ -14,8 +14,6 @@ export default function HomePage() {
           layout="fill"
           className="absolute w-full brightness-[0.3] -z-1"
           alt="hero image"
-          loading="lazy"
-          quality={100}
         />
 
         <div className="absolute z-1 w-full h-full bg-gradient-to-b from-transparent via-transparent to-black"></div>
