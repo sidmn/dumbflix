@@ -19,7 +19,7 @@ const SearchBar = () => {
   const [query, setQuery] = useState("");
 
   const handleSearch = async () => {
-    console.log("handle Search is triggered");
+    
     const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
     const res = await fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
@@ -27,9 +27,6 @@ const SearchBar = () => {
     const data = await res.json();
     setSearchResults(data.results);
   };
-
-  console.log(query);
-  console.log(searchResults);
 
   return (
     <div>
