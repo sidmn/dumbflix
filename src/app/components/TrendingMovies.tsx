@@ -27,12 +27,12 @@ const TrendingMovies = async () => {
   return (
     <div>
       
-      <Carousel>
-        <CarouselContent className="md:p-2">
+      <Carousel >
+        <CarouselContent className="md:p-2 ">
           {(data.results || []).slice(0,10).map((movie: Movie, index:number) => (
-            <CarouselItem className="basis-1/3 md:basis-1/5 lg:basis-1/6 " key={index}>
+            <CarouselItem className="basis-1/3 md:basis-1/5 lg:basis-1/6" key={index}>
               <Link href={`/movie/${movie.id}`} key={movie.id}>
-              <div className="relative z-0">
+              <div className="relative z-0 ">
                 <Image
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   alt={movie.title}

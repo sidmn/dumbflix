@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoHeartCircleOutline } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
 
@@ -18,15 +18,31 @@ const SearchBar = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [query, setQuery] = useState("");
 
-  const handleSearch = async () => {
-    
-    const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-    const res = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
-    );
-    const data = await res.json();
-    setSearchResults(data.results);
-  };
+  useEffect(() => {
+    if (!query.trim()) {
+      setSearchResults([]); 
+      return;
+    }
+
+    const fetchMovies = async () => {
+      const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+      try {
+        const res = await fetch(
+          `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
+        );
+        const data = await res.json();
+        setSearchResults(data.results || []);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    const debounceTimeout = setTimeout(() => {
+      fetchMovies();
+    }, 300); 
+
+    return () => clearTimeout(debounceTimeout); 
+  }, [query]);
 
   return (
     <div>
@@ -35,21 +51,23 @@ const SearchBar = () => {
           type="text"
           placeholder="Search movies..."
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            setQuery(e.target.value);
+          }}
           className="px-4 py-2 rounded-sm bg-transparent border border-gray-500 border-1 text-white focus:border-gray-200"
         />
         <button
           type="submit"
           aria-label="Search"
-          onClick={handleSearch}
+          onClick={() => setQuery(query)}
           className="px-4 py-2 bg-[#E50815] text-white rounded-sm"
         >
           <p className="hidden md:block">Search</p>
-          <IoSearch className="md:hidden"/>
+          <IoSearch className="md:hidden" />
         </button>
       </div>
-      <div className="flex flex-col gap-2 mt-2 absolute">
-        {(searchResults || []).slice(0, 4).map((movie: Movie) => (
+      <div className="flex flex-col gap-1 mt-2 absolute overflow-y-scroll max-h-80 scroll-smooth max-w-[300px] md:max-w-80 scrollbar bg-[#09090b] rounded-lg">
+        {(searchResults || []).slice(0, 20).map((movie: Movie) => (
           <Link href={`/movie/${movie.id}`} key={movie.id}>
             <div
               key={movie.id}
@@ -57,7 +75,7 @@ const SearchBar = () => {
             >
               <Image
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                width={40}
+                width={50}
                 height={50}
                 alt="poster image"
                 className="rounded-lg"
