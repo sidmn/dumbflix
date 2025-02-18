@@ -5,6 +5,10 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { IoHeartCircleOutline } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
+import { setSearchResults } from "../store/searchSlice";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 interface Movie {
   id: number;
@@ -15,12 +19,14 @@ interface Movie {
 }
 
 const SearchBar = () => {
-  const [searchResults, setSearchResults] = useState([]);
   const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
+
+  const searchResults = useSelector((state: RootState) => state.search.results);
 
   useEffect(() => {
     if (!query.trim()) {
-      setSearchResults([]); 
+      dispatch(setSearchResults([]));
       return;
     }
 
@@ -31,7 +37,7 @@ const SearchBar = () => {
           `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
         );
         const data = await res.json();
-        setSearchResults(data.results || []);
+        dispatch(setSearchResults(data.results || []));
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -39,10 +45,10 @@ const SearchBar = () => {
 
     const debounceTimeout = setTimeout(() => {
       fetchMovies();
-    }, 300); 
+    }, 300);
 
-    return () => clearTimeout(debounceTimeout); 
-  }, [query]);
+    return () => clearTimeout(debounceTimeout);
+  }, [dispatch, query]);
 
   return (
     <div>
@@ -76,7 +82,7 @@ const SearchBar = () => {
               <Image
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 width={50}
-                height={50}
+                height={40}
                 alt="poster image"
                 className="rounded-lg"
               />

@@ -8,7 +8,7 @@ interface Movie {
     release_date: string;
   }
 
-  interface SearchState{
+export interface SearchState{
     results: Movie[];
   }
 
